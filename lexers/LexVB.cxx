@@ -43,9 +43,11 @@ constexpr bool IsTypeCharacter(int ch) noexcept {
 }
 
 // Extended to accept accented characters
+// Note: '.' intentionally excluded so "obj.member" splits into separate tokens,
+// allowing keyword lists (e.g. Keyword3) to match "obj" independently.
 constexpr bool IsAWordChar(int ch) noexcept {
 	return !IsASCII(ch) ||
-	       (IsAlphaNumeric(ch) || ch == '.' || ch == '_');
+	       (IsAlphaNumeric(ch) || ch == '_');
 }
 
 constexpr bool IsAWordStart(int ch) noexcept {
